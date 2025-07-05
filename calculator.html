@@ -28,21 +28,35 @@
                 <td>+</td>
             </tr>
             <tr>
-                <td colspan="2">0</td>
+                <td colspan="2" onclick="digitBtnPressed(0)">0</td>
 
-                <td>AC</td>
+                <td onclick="btnACPressed()">AC</td>
                 <td>/</td>
             </tr>
              <tr>
                 <td colspan="4">=</td>
             </tr>
         </table>
-        <script>
-            function digitBtnPressed(button){
-                var currentValue =  document.getElementById("inputBox").value;
-                document.getElementById("inputBox").value = currentValue + button;
-            }
 
+        <script>
+            var newLine = true; // Boolean var Determine if next thing user types should be new line
+
+            //Event handler for when any digit button is pressed
+            function digitBtnPressed(button){
+
+                if(newLine){
+                    document.getElementById("inputBox").value = button;
+                    newLine = false;
+                } else {
+                    var currentValue =  document.getElementById("inputBox").value;
+                    document.getElementById("inputBox").value = currentValue + button;
+                }
+            }
+            
+            function btnACPressed(){
+                document.getElementById("inputBox").value = 0;
+                  newLine = true;
+            }
 
 
         </script>
